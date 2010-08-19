@@ -1,4 +1,10 @@
 PatrioticFinger::Application.routes.draw do
+  match 'rank/users.:format',
+    :method => :get, :action => 'users', :controller => 'rank'
+  match 'rank/countries.:format',
+    :method => :get, :action => 'countries', :controller => 'rank'
+  match '/rank/countryusers/:user_id.:format',
+    :method => :get, :action => 'countryusers', :controller => 'rank'
   
   match 'users/new/name=:name&country_id=:country_id&device_id=:device_id.:format',
     :method => :post, :action => 'create', :controller => 'users'
