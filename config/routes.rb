@@ -11,10 +11,11 @@ PatrioticFinger::Application.routes.draw do
   match 'users/login/:device_id.:format',
     :method => :get, :action => 'login', :controller => 'users'
     
-    
+  match 'countries/point/value=:value&user_id=:user_id&country_id=:country_id.:format',
+    :method => :put, :action => 'point', :controller => 'countries'
   match 'countries/all.:format',
     :method => :get, :action => 'index', :controller => 'countries'
-  
+    
   resources :countries
 
   resources :users

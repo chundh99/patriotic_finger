@@ -1,4 +1,33 @@
 class CountriesController < ApplicationController
+  
+  # PUT /countries/point/value=:value&user_id=:user_id&country_id=:country_id.xml
+  def point
+    @country = Country.find(params[:country_id])
+    @user = User.find(params[:user_id])
+    
+    if params[:value].to_i < 0
+      @country.point +=params[:value].to_i
+      @user.point -= params[:value].to_i
+    else 
+      @country.point += params[:value].to_i
+      @user.point += params[:value].to_i
+    end
+    
+    if @country.point <= -1000
+      @country.point = -1000
+    end
+    
+    respond_to do |format|
+      if @country.update_attributes(params[:country]) && @user.update_attributes(params[:user])
+        format.html { redirect_to(@country, :notice => 'Country was successfully updated.') }
+        format.xml  { render :xml => @country }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @country.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+  
   # GET /countries
   # GET /countries.xml
   def index
