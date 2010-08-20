@@ -1,4 +1,22 @@
 class UsersController < ApplicationController
+  
+  # GET /users/login/:device_id.xml
+  def login
+    @user = User.all(:conditions => {:device_id => params[:device_id]})
+    
+    if @user.count == 0
+      respond_to do |format|
+        format.html # index.html.erb
+        format.xml  { render :xml => "<errors><error>No user</error></errors>" }
+      end
+    else
+      respond_to do |format|
+        format.html # index.html.erb
+        format.xml  { render :xml => @user }
+      end
+    end
+  end
+  
   # GET /users
   # GET /users.xml
   def index
@@ -14,7 +32,7 @@ class UsersController < ApplicationController
   # GET /users/1.xml
   def show
     @user = User.find(params[:id])
-
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @user }
