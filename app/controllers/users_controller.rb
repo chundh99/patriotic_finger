@@ -78,13 +78,16 @@ class UsersController < ApplicationController
 
   # PUT /users/1
   # PUT /users/1.xml
+  # PUT /users/update/user_id=:id&country_id=:country_id.xml
   def update
     @user = User.find(params[:id])
+    
+    @user.country_id = params[:country_id]
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
-        format.xml  { head :ok }
+        format.xml  { render :xml => @user }
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
@@ -94,6 +97,7 @@ class UsersController < ApplicationController
 
   # DELETE /users/1
   # DELETE /users/1.xml
+  # DELETE /users/delete/:id.xml
   def destroy
     @user = User.find(params[:id])
     @user.destroy

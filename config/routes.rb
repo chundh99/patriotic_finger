@@ -10,6 +10,10 @@ PatrioticFinger::Application.routes.draw do
     :method => :post, :action => 'create', :controller => 'users'
   match 'users/login/:device_id.:format',
     :method => :get, :action => 'login', :controller => 'users'
+  match 'users/update/user_id=:id&country_id=:country_id.:format',
+    :method => :put, :action => 'update', :controller => 'users'
+  match 'users/delete/:id.:format',
+    :method => :delete, :action => 'destroy', :controller => 'users'
     
   match 'countries/point/value=:value&user_id=:user_id&country_id=:country_id.:format',
     :method => :put, :action => 'point', :controller => 'countries'
