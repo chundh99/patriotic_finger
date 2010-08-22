@@ -1,5 +1,19 @@
 class CountriesController < ApplicationController
   
+  # POST /countries/reset/this1sfltpt.xml
+  def reset
+    @countries = Country.all
+    
+    @countries.each do |country|
+      country.point = 0
+      country.save
+    end
+
+    respond_to do |format|
+      format.xml  { render :xml => @countries }
+    end
+  end
+  
   # PUT /countries/point/value=:value&user_id=:user_id&country_id=:country_id.xml
   def point
     @country = Country.find(params[:country_id])
