@@ -21,6 +21,8 @@ PatrioticFinger::Application.routes.draw do
     :method => :get, :action => 'index', :controller => 'countries'
   match 'countries/reset/this1sfltpt.:format',
     :method => :post, :action => 'reset', :controller => 'countries'
+  match 'countries/flag/:country_id.:format',
+    :method => :get, :action => 'flag', :controller => 'countries'
     
   resources :countries
 

@@ -1,5 +1,15 @@
 class CountriesController < ApplicationController
   
+  # GET /countries/flag/:country_id.xml
+  def flag
+    @country = Country.find(params[:country_id])
+    
+    @flag = Flags.find(@country.flag_id)
+    
+    respond_to do |format|
+      format.xml  { render :xml => @flag }
+    end
+  end
   
   # POST /countries/reset/this1sfltpt.xml
   def reset
@@ -47,7 +57,7 @@ class CountriesController < ApplicationController
   # GET /countries.xml
   def index
     @countries = Country.all(:order => "name ASC")
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @countries }
