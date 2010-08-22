@@ -1,5 +1,6 @@
 class CountriesController < ApplicationController
   
+  
   # POST /countries/reset/this1sfltpt.xml
   def reset
     @countries = Country.all

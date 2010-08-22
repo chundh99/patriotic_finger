@@ -4,6 +4,7 @@
   <tr>
     <th>Name</th>
     <th>Point</th>
+	<th>Image</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,6 +14,7 @@
   <tr>
     <td><%= country.name %></td>
     <td><%= country.point %></td>
+	<td><%= country.filename %></td>
     <td><%= link_to 'Show', country %></td>
     <td><%= link_to 'Edit', edit_country_path(country) %></td>
     <td><%= link_to 'Destroy', country, :confirm => 'Are you sure?', :method => :delete %></td>
