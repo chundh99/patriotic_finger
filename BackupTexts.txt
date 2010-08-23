@@ -1,0 +1,6 @@
+countryview /.index.html.erb
+<td><%= link_to 'Show', country %></td>
+<td><%= link_to 'Edit', edit_country_path(country) %></td>
+<td><%= link_to 'Destroy', country, :confirm => 'Are you sure?', :method => :delete %>
+
+<%= link_to 'New Country', new_country_path %>
