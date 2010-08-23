@@ -5,7 +5,7 @@ class CountriesController < ApplicationController
     @countries = Country.all
     
     @countries.each do |country|
-      country.point = 0
+      country.point = 500
       country.save
     end
 
